@@ -34,7 +34,7 @@ RUN tar -zxvf /var/www/html/rubedo.tar.gz -C /var/www/html
 RUN rm -f /var/www/html/rubedo.tar.gz
 Run chown apache:apache /var/www/html/rubedo/config/autoload/local.php
 # Expose port
-EXPOSE 2222 80
+EXPOSE 22 80
 ENV AUTHORIZED_KEYS **None**
 # Start script
 ADD set_root_pw.sh /set_root_pw.sh
