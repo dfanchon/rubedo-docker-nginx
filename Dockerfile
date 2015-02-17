@@ -27,7 +27,7 @@ RUN tar -zxvf /var/www/html/rubedo.tar.gz -C /var/www/html
 RUN rm -f /var/www/html/rubedo.tar.gz
 Run chown apache:apache /var/www/html/rubedo/config/autoload/local.php
 # Start httpd
-ENTRYPOINT /usr/sbin/httpd -DFOREGROUND
+# ENTRYPOINT /usr/sbin/httpd -DFOREGROUND
 # Start script
 ADD start /start.sh
 RUN chmod 777 /start.sh
