@@ -11,7 +11,7 @@ RUN yum -y install openssh-server epel-release && \
     sed -i "s/#UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config
 # Install PHP env
 RUN yum install -y httpd git vim php php-gd php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-snmp php-soap curl curl-devel gcc php-devel php-intl tar wget supervisor
-RUN mkdir -p /var/lock/httpd /var/run/httpd /var/run/sshd /var/log/supervisor
+RUN mkdir -p /var/lock/httpd /var/run/httpd /var/run/sshd /var/log/supervisor /var/log/sshd
 COPY supervisord.conf /etc/supervisord.conf
 # Update httpd conf
 RUN cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.old
