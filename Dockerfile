@@ -28,11 +28,6 @@ RUN sed -i 's#memory_limit = 128M#memory_limit = 512M#g' /etc/php.ini
 RUN sed -i 's#max_execution_time = 30#max_execution_time = 240#g' /etc/php.ini
 RUN sed -i 's#upload_max_filesize = 2M#upload_max_filesize = 20M#g' /etc/php.ini
 RUN sed -i 's#;date.timezone =#date.timezone = "Europe/Paris"\n#g' /etc/php.ini
-#Install Rubedo
-RUN wget -O /var/www/html/rubedo.tar.gz https://github.com/WebTales/rubedo/releases/download/3.0.0/rubedo.tar.gz
-RUN tar -zxvf /var/www/html/rubedo.tar.gz -C /var/www/html
-RUN rm -f /var/www/html/rubedo.tar.gz
-Run chown apache:apache /var/www/html/rubedo/config/autoload/local.php
 # Expose port
 EXPOSE 22 80
 ENV AUTHORIZED_KEYS **None**
