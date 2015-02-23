@@ -1,16 +1,16 @@
 # Rubedo dockerfile
 FROM centos:centos7
-RUN yum -y update
-RUN yum install -y make
+RUN yum -y update; yum -y clean all
+RUN yum install -y make; yum -y clean all
 # Install openssh
-RUN yum -y install openssh-server epel-release && \
-    yum -y install pwgen && \
+RUN yum -y install openssh-server epel-release; yum -y clean all && \
+    yum -y install pwgen; yum -y clean all && \
     rm -f /etc/ssh/ssh_host_ecdsa_key /etc/ssh/ssh_host_rsa_key && \
     ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_ecdsa_key && \
     ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key && \
     sed -i "s/#UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config
 # Install PHP env
-RUN yum install -y httpd git vim php php-gd php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-snmp php-soap curl curl-devel gcc php-devel php-intl tar wget supervisor
+RUN yum install -y httpd git vim php php-gd php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-snmp php-soap curl curl-devel gcc php-devel php-intl tar wget supervisor; yum -y clean all
 RUN mkdir -p /var/lock/httpd /var/run/httpd /var/run/sshd /var/log/supervisor /var/log/sshd
 COPY supervisord.conf /etc/supervisord.conf
 # Update httpd conf
