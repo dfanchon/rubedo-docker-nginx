@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 if [ "${AUTHORIZED_KEYS}" != "**None**" ]; then
     echo "=> Found authorized keys"
     mkdir -p /root/.ssh
@@ -23,4 +23,10 @@ if [ ! -f /.root_pw_set ]; then
 	/set_root_pw.sh
 fi
 
-exec /usr/bin/supervisord -c /etc/supervisord.conf
+if [ ! -z "${USERNAME}" ] && [ ! -z "${PWDSUPERVISOR}" ]
+then
+    sed -i 's#username = Username#username = '"$USERNAME"'#g' /etc/supervisord.conf
+    sed -i 's#password = PwdSupervisor#password = '"$PWDSUPERVISOR"'#g' /etc/supervisord.conf
+fi
+
+exec "$@"
