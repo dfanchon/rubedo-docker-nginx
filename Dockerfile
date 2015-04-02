@@ -15,7 +15,7 @@ RUN yum install -y nginx git vim php php-fpm php-gd php-ldap php-odbc php-pear p
 RUN mkdir -p /var/run/sshd /var/log/supervisor /var/log/sshd
 COPY supervisord.conf /etc/supervisord.conf
 # ADD Nginx config
-ADD nginx.conf /etc/nginx/conf.d/default.conf
+ADD nginx.conf /etc/nginx/nginx.conf
 # Install PHP Mongo extension
 RUN pecl install mongo
 ADD mongo.ini /etc/php.d/mongo.ini
