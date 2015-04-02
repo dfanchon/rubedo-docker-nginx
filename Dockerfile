@@ -23,8 +23,8 @@ ADD mongo.ini /etc/php.d/mongo.ini
 RUN sed -i 's#memory_limit = 128M#memory_limit = 512M#g' /etc/php.ini && \
     sed -i 's#max_execution_time = 30#max_execution_time = 240#g' /etc/php.ini && \
     sed -i 's#upload_max_filesize = 2M#upload_max_filesize = 20M#g' /etc/php.ini && \
-    sed -i 's#;date.timezone =#date.timezone = "Europe/Paris"\n#g' /etc/php.ini \
-    sed -i 's#;cgi.fix_pathinfo=1#cgi.fix_pathinfo=0#g' /etc/php.ini \
+    sed -i 's#;date.timezone =#date.timezone = "Europe/Paris"\n#g' /etc/php.ini && \
+    sed -i 's#;cgi.fix_pathinfo=1#cgi.fix_pathinfo=0#g' /etc/php.ini && \
     sed -r -i -e 's|^listen = 127.0.0.1.*$|listen = /var/run/php-fpm/php-fpm.sock|g' /etc/php-fpm.d/www.conf
 # Expose port
 EXPOSE 22 80
